@@ -1,0 +1,10 @@
+io:
+  queueSize: 1024
+  local: true
+workers:
+  count: 2
+  queueSize: 64
+  tcpMaxBufferedPagesTotal: 65536
+  tcpMaxBufferedPagesPerConn: 16
+  tcpTimeout: 10m
+  udpMaxStreams: 4096
