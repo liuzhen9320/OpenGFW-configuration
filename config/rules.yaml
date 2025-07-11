@@ -1,0 +1,27 @@
+- name: Block ShadowSocks and Vmess
+  action: block
+  log: true
+  expr: fet != nil && fet.yes
+
+- name: Block Trojan
+  action: block
+  log: true
+  expr: trojan != nil && trojan.yes
+
+- name: Block Socks
+  action: block
+  log: true
+  expr: socks != nil && socks.yes
+
+- name: Block OpenVPN
+  action: block
+  log: true
+  expr: openvpn != nil && openvpn.rx_pkt_cnt + openvpn.tx_pkt_cnt > 50
+# - name: Block Non-standard TLS Traffic
+#   action: drop
+#   log: true
+#   expr: tls != nil && port?.dst != 443
+# - name: Block Non-standard QUIC Traffic
+#   action: drop
+#   log: true
+#   expr: quic != nil && port?.dst != 443
