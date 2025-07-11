@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # OpenGFW Installation Script
-# This script installs OpenGFW v0.4.0 with unattended execution support
+# This script installs OpenGFW v0.4.1 with unattended execution support
 
 set -euo pipefail  # Exit on error, undefined variables, and pipe failures
 
@@ -152,15 +152,15 @@ download_configs() {
     
     local config_base_url="${GITHUB_BASE_URL}/liuzhen9320/OpenGFW-configuration/raw/main/config"
     
-    # Download config.yml
-    if ! download_with_retry "${config_base_url}/config.yml" "${INSTALL_DIR}/config.yml"; then
-        error "Failed to download config.yml"
+    # Download config.yaml
+    if ! download_with_retry "${config_base_url}/config.yaml" "${INSTALL_DIR}/config.yaml"; then
+        error "Failed to download config.yaml"
         exit 1
     fi
     
-    # Download rules.yml
-    if ! download_with_retry "${config_base_url}/rules.yml" "${INSTALL_DIR}/rules.yml"; then
-        error "Failed to download rules.yml"
+    # Download rules.yaml
+    if ! download_with_retry "${config_base_url}/rules.yaml" "${INSTALL_DIR}/rules.yaml"; then
+        error "Failed to download rules.yaml"
         exit 1
     fi
     
