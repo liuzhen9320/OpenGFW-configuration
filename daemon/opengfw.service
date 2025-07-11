@@ -1,0 +1,31 @@
+[Unit]
+Description=OpenGFW - Open Great Firewall Network Analysis Tool
+Documentation=https://github.com/apernet/OpenGFW
+After=network.target network-online.target
+Wants=network-online.target
+ConditionPathExists=/opt/opengfw/OpenGFW
+ConditionPathExists=/opt/opengfw/config.yaml
+
+[Service]
+WorkingDirectory=/opt/opengfw
+ExecStart=/opt/opengfw/OpenGFW -c /opt/opengfw/config.yaml /opt/opengfw/rules.yaml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStartSec=60
+TimeoutStopSec=30
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=opengfw
+SyslogLevel=info
+
+# Environment
+Environment=GOMAXPROCS=2
+
+[Install]
+WantedBy=network.target
+Alias=gfw.service
